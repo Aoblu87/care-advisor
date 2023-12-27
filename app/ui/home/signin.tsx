@@ -12,7 +12,7 @@ export default function Signin() {
                   Sign in
                 </h1>
                 <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">
-                  Don't have an account yet?
+                  Don&apos t have an account yet?
                   <a className="text-blue-600 decoration-2 hover:underline font-medium dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">
                     <SignUp /> Sign up here
                   </a>
