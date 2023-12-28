@@ -1,6 +1,6 @@
 import SignUp from "./sign-up";
 
-export default function Signin() {
+export default function Login() {
   return (
     <html className="h-full">
       <body className="dark:bg-slate-900 bg-gray-100 flex h-full items-center py-16">

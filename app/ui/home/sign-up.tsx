@@ -1,4 +1,4 @@
-import Signin from "./signin";
+import Signin from "./login";
 
 export default function SignUp() {
   return (
