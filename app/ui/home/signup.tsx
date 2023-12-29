@@ -2,28 +2,67 @@ import Signin from "./login";
 
 export default function SignUp() {
   return (
-    <html className="h-full">
-      <body className="dark:bg-slate-900 bg-gray-100 flex h-full items-center py-16">
-        <main className="w-full max-w-md mx-auto p-6">
-          <div className="mt-7 bg-white border border-gray-200 rounded-xl shadow-sm dark:bg-gray-800 dark:border-gray-700">
+    <>
+      <div className="text-center">
+        <button
+          type="button"
+          className="py-3 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-white dark:hover:bg-gray-800 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
+          data-hs-overlay="#hs-modal-signup"
+        >
+          Signup
+        </button>
+      </div>
+
+      <div
+        id="hs-modal-signup"
+        className="hs-overlay hidden w-full h-full fixed top-0 start-0 z-[60] overflow-x-hidden overflow-y-auto"
+      >
+        <div className="hs-overlay-open:mt-7 hs-overlay-open:opacity-100 hs-overlay-open:duration-500 mt-0 opacity-0 ease-out transition-all sm:max-w-lg sm:w-full m-3 sm:mx-auto">
+          <div className="bg-white border border-gray-200 rounded-xl shadow-sm dark:bg-gray-800 dark:border-gray-700">
             <div className="p-4 sm:p-7">
+              <div className="flex justify-end ">
+                <button
+                  type="button"
+                  className="flex justify-center items-center  w-7 h-7 text-sm font-semibold rounded-lg border border-transparent text-gray-800 hover:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none dark:text-white dark:border-transparent dark:hover:bg-gray-700 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
+                  data-hs-overlay="#hs-modal-signup"
+                >
+                  <span className="sr-only">Close</span>
+                  <svg
+                    className="flex-shrink-0 w-4 h-4"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="30"
+                    height="30"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <path d="M18 6 6 18" />
+                    <path d="m6 6 12 12" />
+                  </svg>
+                </button>
+              </div>
               <div className="text-center">
-                <h1 className="block text-2xl font-bold text-gray-800 dark:text-white">
+                <h2 className="block text-2xl font-bold text-gray-800 dark:text-gray-200">
                   Sign up
-                </h1>
+                </h2>
                 <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">
                   Already have an account?
-                  <a className="text-blue-600 decoration-2 hover:underline font-medium dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">
-                    <Signin />
+                  <a
+                    className="text-blue-600 decoration-2 hover:underline font-medium dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
+                    href="../examples/html/modal-signin.html"
+                  >
                     Sign in here
                   </a>
                 </p>
               </div>
 
               <div className="mt-5">
-                <button
-                  type="button"
+                <a
                   className="w-full py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-white dark:hover:bg-gray-800 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
+                  href="#"
                 >
                   <svg
                     className="w-4 h-auto"
@@ -50,14 +89,16 @@ export default function SignUp() {
                     />
                   </svg>
                   Sign up with Google
-                </button>
+                </a>
 
                 <div className="py-3 flex items-center text-xs text-gray-400 uppercase before:flex-[1_1_0%] before:border-t before:border-gray-200 before:me-6 after:flex-[1_1_0%] after:border-t after:border-gray-200 after:ms-6 dark:text-gray-500 dark:before:border-gray-600 dark:after:border-gray-600">
                   Or
                 </div>
 
+                {/* <!-- Form --> */}
                 <form>
                   <div className="grid gap-y-4">
+                    {/* <!-- Form Group --> */}
                     <div>
                       <label
                         htmlFor="email"
@@ -95,7 +136,9 @@ export default function SignUp() {
                         to you
                       </p>
                     </div>
+                    {/* <!-- End Form Group --> */}
 
+                    {/* <!-- Form Group --> */}
                     <div>
                       <label
                         htmlFor="password"
@@ -112,7 +155,7 @@ export default function SignUp() {
                           required
                           aria-describedby="password-error"
                         />
-                        <div className="absolute inset-y-0 end-0 flex items-center pointer-events-none pe-3">
+                        <div className=" absolute inset-y-0 end-0 flex items-center pointer-events-none pe-3">
                           <svg
                             className="h-5 w-5 text-red-500"
                             width="16"
@@ -132,7 +175,9 @@ export default function SignUp() {
                         8+ characters required
                       </p>
                     </div>
+                    {/* <!-- End Form Group --> */}
 
+                    {/* <!-- Form Group --> */}
                     <div>
                       <label
                         htmlFor="confirm-password"
@@ -169,7 +214,9 @@ export default function SignUp() {
                         Password does not match the password
                       </p>
                     </div>
+                    {/* <!-- End Form Group --> */}
 
+                    {/* <!-- Checkbox --> */}
                     <div className="flex items-center">
                       <div className="flex">
                         <input
@@ -194,6 +241,7 @@ export default function SignUp() {
                         </label>
                       </div>
                     </div>
+                    {/* <!-- End Checkbox --> */}
 
                     <button
                       type="submit"
@@ -203,11 +251,12 @@ export default function SignUp() {
                     </button>
                   </div>
                 </form>
+                {/* <!-- End Form --> */}
               </div>
             </div>
           </div>
-        </main>
-      </body>
-    </html>
+        </div>
+      </div>
+    </>
   );
 }

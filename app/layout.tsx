@@ -3,8 +3,8 @@ import PrelineScript from "./PrelineScript";
 
 import Script from "next/script";
 import "./ui/globals.css";
-import ThemeProvider from "./themeContext";
 import Navbar from "./ui/home/navbar";
+import { ThemeProvider } from "./themeContext";
 
 export const metadata = {
   title: "Create Next App",
@@ -22,9 +22,9 @@ export default function RootLayout({
         <ThemeProvider>
           <Navbar />
           {children}
-        </ThemeProvider>
 
-        <Script src="https://kit.fontawesome.com/fb5efdf70b.js" />
+          <Script src="https://kit.fontawesome.com/fb5efdf70b.js" />
+        </ThemeProvider>
       </body>
       <PrelineScript />
     </html>

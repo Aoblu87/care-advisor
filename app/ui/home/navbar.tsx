@@ -1,6 +1,7 @@
 import { ThemeSwitch } from "./ThemeSwitch";
 import Login from "./login";
 import NavLinks from "./nav-links";
+import SignUp from "./signup";
 
 export default function Navbar() {
   return (
@@ -63,14 +64,11 @@ export default function Navbar() {
           <div className="flex flex-col gap-y-4 gap-x-0 mt-5 sm:flex-row sm:items-center sm:justify-end sm:gap-y-0 sm:gap-x-7 sm:mt-0 sm:ps-7">
             <NavLinks />
             <ThemeSwitch />
-            <Login />
+            <div className="flex gap-x-2">
+              <Login />
 
-            <button
-              type="button"
-              className="py-3 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-white dark:hover:bg-gray-800 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
-            >
-              Signup
-            </button>
+              <SignUp />
+            </div>
           </div>
         </div>
       </nav>

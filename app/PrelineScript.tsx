@@ -2,7 +2,11 @@
 
 import { usePathname } from "next/navigation";
 import { useEffect } from "react";
-
+declare global {
+  interface Window {
+    HSStaticMethods: any;
+  }
+}
 export default function PrelineScript() {
   const path = usePathname();
 
@@ -12,7 +16,7 @@ export default function PrelineScript() {
 
   useEffect(() => {
     setTimeout(() => {
-      HSStaticMethods.autoInit();
+      window.HSStaticMethods.autoInit();
     }, 100);
   }, [path]);
 

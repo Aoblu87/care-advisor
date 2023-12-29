@@ -8,11 +8,11 @@ export const ThemeSwitch = () => {
   return (
     <button
       type="button"
-      className="hs-dark-mode-active:hidden hs-dark-mode group flex items-center text-gray-600 hover:text-blue-600 font-medium dark:text-gray-400 dark:hover:text-gray-500"
+      className="hs-dark-mode group flex items-center text-gray-600 hover:text-blue-600 font-medium dark:text-gray-400 dark:hover:text-gray-500"
       data-hs-theme-click-value="dark"
-      onClick={() => setTheme(theme === "ligth" ? "dark" : "ligth")}
+      onClick={() => setTheme(theme === "light" ? "dark" : "light")}
     >
-      {theme === "ligth" ? (
+      {theme === "light" ? (
         <svg
           className="flex-shrink-0 w-4 h-4"
           xmlns="http://www.w3.org/2000/svg"

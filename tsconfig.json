@@ -28,7 +28,7 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "app/ui/home/ThemeSwitch.jsxx",
-    "app/ui/home/sign-up.tsx",
+    "app/ui/home/signup.tsx",
     "app/ui/home/navbar.tsx",
     "app/ui/home/login.tsx",
     "app/useThemeContext.jsx",
@@ -36,8 +36,8 @@
     "app/page.tsx",
     "app/layout.tsx",
     "app/ui/home/ThemeSwitch.tsx",
-    "app/themeContext.jsx",
-    "app/PrelineScript.jsx"
+    "app/themeContext.tsx",
+    "app/PrelineScript.tsx"
   ],
   "exclude": ["node_modules"]
 }
