@@ -1,61 +1,24 @@
-import Signin from "./login";
+import Link from "next/link";
 
 export default function SignUp() {
   return (
     <>
-      <div className="text-center">
-        <button
-          type="button"
-          className="py-3 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-white dark:hover:bg-gray-800 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
-          data-hs-overlay="#hs-modal-signup"
-        >
-          Signup
-        </button>
-      </div>
-
-      <div
-        id="hs-modal-signup"
-        className="hs-overlay hidden w-full h-full fixed top-0 start-0 z-[60] overflow-x-hidden overflow-y-auto"
-      >
-        <div className="hs-overlay-open:mt-7 hs-overlay-open:opacity-100 hs-overlay-open:duration-500 mt-0 opacity-0 ease-out transition-all sm:max-w-lg sm:w-full m-3 sm:mx-auto">
-          <div className="bg-white border border-gray-200 rounded-xl shadow-sm dark:bg-gray-800 dark:border-gray-700">
+      <div>
+        <div className=" mt-0  sm:max-w-lg sm:w-full m-3 sm:mx-auto">
+          <div className="mt-7 bg-white border border-gray-200 rounded-xl shadow-sm dark:bg-gray-800 dark:border-gray-700">
             <div className="p-4 sm:p-7">
-              <div className="flex justify-end ">
-                <button
-                  type="button"
-                  className="flex justify-center items-center  w-7 h-7 text-sm font-semibold rounded-lg border border-transparent text-gray-800 hover:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none dark:text-white dark:border-transparent dark:hover:bg-gray-700 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
-                  data-hs-overlay="#hs-modal-signup"
-                >
-                  <span className="sr-only">Close</span>
-                  <svg
-                    className="flex-shrink-0 w-4 h-4"
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="30"
-                    height="30"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <path d="M18 6 6 18" />
-                    <path d="m6 6 12 12" />
-                  </svg>
-                </button>
-              </div>
               <div className="text-center">
                 <h2 className="block text-2xl font-bold text-gray-800 dark:text-gray-200">
                   Sign up
                 </h2>
                 <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">
                   Already have an account?
-                  <a
+                  <Link
                     className="text-blue-600 decoration-2 hover:underline font-medium dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
-                    href="../examples/html/modal-signin.html"
+                    href="/login"
                   >
                     Sign in here
-                  </a>
+                  </Link>
                 </p>
               </div>
 

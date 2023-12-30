@@ -1,36 +1,39 @@
 "use client";
-import Link from "next/link";
 import { usePathname } from "next/navigation";
-import clsx from "clsx";
+function classNames(...classes: string[]) {
+  return classes.filter(Boolean).join(" ");
+}
+const navigation = [
+  { name: "Dashboard", href: "/dashboard", current: true },
 
-const links = [
   {
     name: "How it works",
     href: "/how-it-works",
+    current: false,
   },
-  { name: "Contact", href: "/contact" },
+  { name: "Contact", href: "/contact", current: false },
 ];
 
 export default function NavLinks() {
   const pathname = usePathname();
   return (
     <>
-      {links.map((link) => {
-        return (
-          <Link
-            key={link.name}
-            href={link.href}
-            className={clsx(
-              "font-medium text-gray-500 hover:text-gray-400 sm:py-6 dark:text-gray-400 dark:hover:text-gray-500",
-              {
-                "bg-sky-100 text-blue-600": pathname === link.href,
-              }
+      <div className="flex md:space-x-4 flex-col md:flex-row">
+        {navigation.map((item) => (
+          <a
+            key={item.name}
+            href={item.href}
+            className={classNames(
+              item.current
+                ? "text-sm text-gray-700 leading-6 hover:text-gray-500 dark:text-gray-400 dark:hover:text-gray-500 hs-scrollspy-active:text-blue-600 dark:hs-scrollspy-active:text-blue-400 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600 active"
+                : "text-sm text-gray-700 leading-6 hover:text-gray-500 dark:text-gray-400 dark:hover:text-gray-500 hs-scrollspy-active:text-blue-600 dark:hs-scrollspy-active:text-blue-400 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
             )}
+            aria-current={item.current ? "page" : undefined}
           >
-            <p className="hidden md:block">{link.name}</p>
-          </Link>
-        );
-      })}
+            {item.name}
+          </a>
+        ))}
+      </div>
     </>
   );
 }
