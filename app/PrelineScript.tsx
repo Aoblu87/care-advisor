@@ -1,10 +1,11 @@
 "use client";
 
 import { usePathname } from "next/navigation";
+import { IStaticMethods } from "preline";
 import { useEffect } from "react";
 declare global {
   interface Window {
-    HSStaticMethods: any;
+    HSStaticMethods: IStaticMethods;
   }
 }
 export default function PrelineScript() {
