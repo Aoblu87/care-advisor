@@ -20,7 +20,7 @@ export default function LoginForm() {
     const password = formData.get("password");
 
     try {
-      const response = await fetch(`http://localhost:3050/api/users/session`, {
+      const response = await fetch(`${process.env.MY_PORT}/api/users/session`, {
         headers: {
           "Content-Type": "application/json",
         },
