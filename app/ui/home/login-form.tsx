@@ -20,7 +20,7 @@ export default function LoginForm() {
     const password = formData.get("password");
 
     try {
-      const response = await fetch(`${process.env.MY_PORT}/api/users/session`, {
+      const response = await fetch(`/api/users/session`, {
         headers: {
           "Content-Type": "application/json",
         },
@@ -30,6 +30,7 @@ export default function LoginForm() {
           password,
         }),
       });
+
       if (!response.ok) {
         setEmailExists(false);
         throw new Error(`HTTP error! Status: ${response.status}`);
