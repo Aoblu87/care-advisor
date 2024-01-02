@@ -1,6 +1,6 @@
 import { inter } from "@/app/ui/fonts";
 
-import { ThemeProvider } from "./themeContext";
+import { ThemeProvider } from "./context/themeContext";
 import "./ui/globals.css";
 import Navbar from "./ui/home/navbar";
 import PrelineScript from "./ui/PrelineScript";
