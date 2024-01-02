@@ -1,7 +1,7 @@
 import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
-import connectToDatabase from "../../../lib/index.js";
-import User from "../../../models/users";
+import connectToDatabase from "../../../../lib/index.js";
+import { User } from "../../../../models/users.js";
 
 import { NextApiRequest, NextApiResponse } from "next";
 
@@ -30,7 +30,7 @@ import { NextApiRequest, NextApiResponse } from "next";
 //   }
 // }
 
-export async function POST(req: NextApiRequest, res: NextApiResponse) {
+export async function POST(req, res) {
   await connectToDatabase();
 
   try {
