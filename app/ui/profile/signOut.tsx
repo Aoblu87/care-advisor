@@ -8,12 +8,10 @@ export default function SignOut() {
   const router = useRouter();
   const { setLogin } = useContext(LoginContext);
 
-  // const navigate = () => router.push("/");
-
   const logout = async () => {
     try {
       await fetch("/api/users/logout");
-      router.push("/");
+      router.push("/login");
       setLogin(false);
     } catch (error: any) {
       console.log(error.message);

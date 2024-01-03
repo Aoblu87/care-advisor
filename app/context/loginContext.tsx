@@ -26,7 +26,7 @@ export const LoginProvider = ({ children }: LoginProviderProps) => {
       console.error(error);
     }
   }, []);
-
+  console.log(login);
   // useEffect(() => {
   //   localStorage.setItem("login", login.toString());
   // }, [login]);
