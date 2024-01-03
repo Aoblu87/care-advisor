@@ -5,7 +5,7 @@ type ResponseData = {
   message: string;
 };
 connectionDB();
-export function GET(
+export async function GET(
   req: NextApiRequest,
   response: NextApiResponse<ResponseData>
 ) {
