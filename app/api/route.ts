@@ -1,13 +1,8 @@
 import connectionDB from "@/app/lib/connectionDB.js";
 import type { NextApiRequest, NextApiResponse } from "next";
+import { NextResponse } from "next/server";
 
-type ResponseData = {
-  message: string;
-};
 connectionDB();
-export async function GET(
-  req: NextApiRequest,
-  response: NextApiResponse<ResponseData>
-) {
-  response.json({ message: "Hello from Next.js!" });
+export async function GET() {
+  return NextResponse.json({ message: "Hello from Next.js!" });
 }
