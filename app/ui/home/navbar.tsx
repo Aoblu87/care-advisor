@@ -2,8 +2,9 @@
 import { useContext } from "react";
 import { ThemeSwitch } from "./ThemeSwitch";
 import NavLinks from "./nav-links";
-import ProfileDropdown from "./profileDropdown";
+import ProfileDropdown from "../profile/profileDropdown";
 import { LoginContext } from "@/app/context/loginContext";
+import { useContext } from "react";
 
 export default function Navbar() {
   const { login } = useContext(LoginContext);
