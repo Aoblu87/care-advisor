@@ -75,7 +75,7 @@ export default function Navbar() {
           >
             <NavLinks />
             <ThemeSwitch />
-            {login == true ? (
+            {login ? (
               <ProfileDropdown />
             ) : (
               <a

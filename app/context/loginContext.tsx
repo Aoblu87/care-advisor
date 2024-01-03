@@ -19,16 +19,17 @@ export const LoginProvider = ({ children }: LoginProviderProps) => {
   const [login, setLogin] = useState<boolean>(false);
 
   useEffect(() => {
-    const loggedInlogin =
-      typeof window !== "undefined"
-        ? localStorage.getItem("login") === "true"
-        : false;
-    setLogin(loggedInlogin);
+    try {
+      fetch("/api/users/me");
+      setLogin(true);
+    } catch (error) {
+      console.error(error);
+    }
   }, []);
 
-  useEffect(() => {
-    localStorage.setItem("login", login.toString());
-  }, [login]);
+  // useEffect(() => {
+  //   localStorage.setItem("login", login.toString());
+  // }, [login]);
 
   return (
     <LoginContext.Provider value={{ login, setLogin }}>

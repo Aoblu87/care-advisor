@@ -2,9 +2,9 @@
   "name": "care-advisor",
   "version": "0.1.0",
   "private": true,
-  "type":"module",
+
   "scripts": {
-    "dev": "node --trace-warnings -r dotenv/config app/layout.tsx",
+    "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
