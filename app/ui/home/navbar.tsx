@@ -1,11 +1,7 @@
 "use client";
-import { Disclosure } from "@headlessui/react";
-import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
-import ProfileDropdown from "./profileDropdown";
-import NavLinks from "./nav-links";
-import Link from "next/link";
 import { ThemeSwitch } from "./ThemeSwitch";
-import Login from "./login";
+import NavLinks from "./nav-links";
+import ProfileDropdown from "./profileDropdown";
 
 const navigation = [
   { name: "Dashboard", href: "/dashboard", current: true },

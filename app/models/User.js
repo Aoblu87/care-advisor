@@ -45,7 +45,7 @@ import mongoose from "mongoose";
 //     type: String,
 //   },
 // });
-const UserSchema = new Schema({
+const userSchema = new mongoose.Schema({
   firstName: {
     type: String,
     required: true,
@@ -81,6 +81,6 @@ const UserSchema = new Schema({
   },
 });
 
-export const User = mongoose.model("users", UserSchema);
-export default mongoose.models.Users ||
-  mongoose.model < User > ("users", UserSchema);
+const User = mongoose.models.users || mongoose.model("users", userSchema);
+
+export default User;

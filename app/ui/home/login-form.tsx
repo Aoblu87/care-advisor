@@ -1,15 +1,17 @@
-"user client";
+"use client";
+import { useContext } from "react";
 
+import { LoginContext } from "@/app/context/loginContext";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 export default function LoginForm() {
-  const [user, setUser] = useState(false);
   const [emailExists, setEmailExists] = useState(true);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const router = useRouter();
   const navigate = () => router.push("/");
+  // const { setLogin } = useContext(LoginContext);
 
   async function handleLogin(e: any) {
     e.preventDefault();
@@ -20,7 +22,7 @@ export default function LoginForm() {
     const password = formData.get("password");
 
     try {
-      const response = await fetch(`/api/users/session`, {
+      const response = await fetch(`/api/users/login`, {
         headers: {
           "Content-Type": "application/json",
         },
@@ -34,17 +36,6 @@ export default function LoginForm() {
       if (!response.ok) {
         setEmailExists(false);
         throw new Error(`HTTP error! Status: ${response.status}`);
-        // } else {
-        //     toast.success(" Login successfull!", {
-        //         position: "top-center",
-        //         autoClose: 2000,
-        //         hideProgressBar: false,
-        //         closeOnClick: false,
-        //         pauseOnHover: false,
-        //         draggable: false,
-
-        //         theme: "light",
-        //     })
       }
       const data = await response.json();
       if (data.token) {
@@ -55,7 +46,7 @@ export default function LoginForm() {
         localStorage.setItem("token", data.token);
       }
       console.log(data);
-      setUser(true);
+      // setLogin(true);
       navigate();
     } catch (error) {
       console.log("Error fetching data:", error);
