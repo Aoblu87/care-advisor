@@ -36,13 +36,12 @@
     "app/page.tsx",
     "app/layout.tsx",
     "app/ui/home/ThemeSwitch.tsx",
-    "app/context/themeContext.tsxtext.tsx",
+    "app/context/themeContext.tsx",
     "app/PrelineScript.tsx",
     "app/api/route.js",
-    "app/api/users/session/route.ts",
-    "app/lib/users.js",
-    "app/lib/users.js",
-    "app/models/users.js"
+    "app/api/session/route.js",
+    "app/api/route.js",
+    "app/models/User.js"
   ],
   "exclude": ["node_modules"]
 }

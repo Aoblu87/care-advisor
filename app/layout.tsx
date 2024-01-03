@@ -1,9 +1,11 @@
 import { inter } from "@/app/ui/fonts";
 
 import { ThemeProvider } from "./context/themeContext";
+import { LoginProvider } from "./context/loginContext";
 import "./ui/globals.css";
 import Navbar from "./ui/home/navbar";
 import PrelineScript from "./ui/PrelineScript";
+require("dotenv").config();
 
 export const metadata = {
   title: "Healt-Guide",
@@ -17,12 +19,14 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${inter.className} antialiased`}>
-        <ThemeProvider>
-          <Navbar />
-          {children}
-        </ThemeProvider>
-      </body>
+      <LoginProvider>
+        <body className={`${inter.className} antialiased`}>
+          <ThemeProvider>
+            <Navbar />
+            {children}
+          </ThemeProvider>
+        </body>
+      </LoginProvider>
       <PrelineScript />
     </html>
   );

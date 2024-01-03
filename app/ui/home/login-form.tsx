@@ -1,49 +1,40 @@
-"user client";
+"use client";
+import { useContext } from "react";
 
+import { LoginContext } from "@/app/context/loginContext";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
-export default function LoginForm() {
-  const [user, setUser] = useState(false);
+export default function LoginForm(props: any) {
+  const { setLoading } = props;
   const [emailExists, setEmailExists] = useState(true);
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [user, setUser] = useState({
+    email: "",
+    password: "",
+  });
   const router = useRouter();
   const navigate = () => router.push("/");
+  const { setLogin } = useContext(LoginContext);
 
-  async function handleLogin(e: any) {
+  const handleLogin = async (e: any) => {
     e.preventDefault();
-    const form = e.target;
-    const formData = new FormData(form);
-
-    const email = formData.get("email");
-    const password = formData.get("password");
+    setLoading(true);
 
     try {
-      const response = await fetch(`${process.env.MY_PORT}/api/users/session`, {
+      const response = await fetch(`/api/users/login`, {
         headers: {
           "Content-Type": "application/json",
         },
         method: "POST",
         body: JSON.stringify({
-          email,
-          password,
+          email: user.email,
+          password: user.password,
         }),
       });
+
       if (!response.ok) {
         setEmailExists(false);
         throw new Error(`HTTP error! Status: ${response.status}`);
-        // } else {
-        //     toast.success(" Login successfull!", {
-        //         position: "top-center",
-        //         autoClose: 2000,
-        //         hideProgressBar: false,
-        //         closeOnClick: false,
-        //         pauseOnHover: false,
-        //         draggable: false,
-
-        //         theme: "light",
-        //     })
       }
       const data = await response.json();
       if (data.token) {
@@ -54,12 +45,14 @@ export default function LoginForm() {
         localStorage.setItem("token", data.token);
       }
       console.log(data);
-      setUser(true);
+      setLogin(true);
       navigate();
     } catch (error) {
       console.log("Error fetching data:", error);
+    } finally {
+      setLoading(false);
     }
-  }
+  };
 
   return (
     <form onSubmit={handleLogin}>
@@ -76,8 +69,8 @@ export default function LoginForm() {
               className="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600"
               required
               aria-describedby="email-error"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              value={user.email}
+              onChange={(e) => setUser({ ...user, email: e.target.value })}
             />
             <div className="absolute inset-y-0 end-0 flex items-center pointer-events-none pe-3">
               <svg
@@ -120,8 +113,8 @@ export default function LoginForm() {
               className="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600"
               required
               aria-describedby="password-error"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              value={user.password}
+              onChange={(e) => setUser({ ...user, password: e.target.value })}
             />
             {!emailExists && (
               <p className="absolute text-sm text-red-500 -bottom-6">
