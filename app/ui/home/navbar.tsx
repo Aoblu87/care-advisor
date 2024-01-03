@@ -1,23 +1,8 @@
 "use client";
 import { ThemeSwitch } from "./ThemeSwitch";
 import NavLinks from "./nav-links";
-<<<<<<< Updated upstream
-import ProfileDropdown from "./profileDropdown";
-
-const navigation = [
-  { name: "Dashboard", href: "/dashboard", current: true },
-
-  { name: "How it works", href: "#/how-it-works", current: false },
-  { name: "Contact", href: "/contact", current: false },
-];
-
-function classNames(...classes: string[]) {
-  return classes.filter(Boolean).join(" ");
-}
-=======
 import ProfileDropdown from "../profile/profileDropdown";
 import { LoginContext } from "@/app/context/loginContext";
->>>>>>> Stashed changes
 
 export default function Navbar() {
   return (
