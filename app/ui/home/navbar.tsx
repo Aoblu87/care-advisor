@@ -1,5 +1,4 @@
 "use client";
-import { useContext } from "react";
 import { ThemeSwitch } from "./ThemeSwitch";
 import NavLinks from "./nav-links";
 import ProfileDropdown from "../profile/profileDropdown";
