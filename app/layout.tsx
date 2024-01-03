@@ -19,14 +19,14 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${inter.className} antialiased`}>
-        <ThemeProvider>
-          {/* <LoginProvider> */}
-          <Navbar />
-          {children}
-          {/* </LoginProvider> */}
-        </ThemeProvider>
-      </body>
+      <LoginProvider>
+        <body className={`${inter.className} antialiased`}>
+          <ThemeProvider>
+            <Navbar />
+            {children}
+          </ThemeProvider>
+        </body>
+      </LoginProvider>
       <PrelineScript />
     </html>
   );
