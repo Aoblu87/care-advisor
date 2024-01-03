@@ -1,6 +1,7 @@
 "use client";
 import { ThemeSwitch } from "./ThemeSwitch";
 import NavLinks from "./nav-links";
+<<<<<<< Updated upstream
 import ProfileDropdown from "./profileDropdown";
 
 const navigation = [
@@ -13,6 +14,10 @@ const navigation = [
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(" ");
 }
+=======
+import ProfileDropdown from "../profile/profileDropdown";
+import { LoginContext } from "@/app/context/loginContext";
+>>>>>>> Stashed changes
 
 export default function Navbar() {
   return (

@@ -30,7 +30,7 @@
     "app/ui/home/ThemeSwitch.jsxx",
     "app/ui/home/signup.tsx",
     "app/ui/home/navbar.tsx",
-    "app/ui/home/login.tsx",
+    "app/ui/login/login.tsx",
     "app/useThemeContext.jsx",
     "app/ui/PrelineScript.jsx",
     "app/page.tsx",
