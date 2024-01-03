@@ -3,8 +3,11 @@ import { ThemeSwitch } from "./ThemeSwitch";
 import NavLinks from "./nav-links";
 import ProfileDropdown from "../profile/profileDropdown";
 import { LoginContext } from "@/app/context/loginContext";
+import { useContext } from "react";
 
 export default function Navbar() {
+  const { login } = useContext(LoginContext);
+
   return (
     <header className="sticky top-0 inset-x-0 flex flex-wrap sm:justify-start sm:flex-nowrap z-50 w-full bg-white border-b border-gray-200 text-sm py-4 dark:bg-gray-800 dark:border-gray-700">
       <nav
@@ -72,15 +75,16 @@ export default function Navbar() {
           >
             <NavLinks />
             <ThemeSwitch />
-            {/* Profilo loggato */}
-            <ProfileDropdown />
-            {/* LOGIN link */}
-            <a
-              href="/login"
-              className="text-sm font-semibold leading-6 text-gray-900"
-            >
-              Sign in <span aria-hidden="true">&rarr;</span>
-            </a>
+            {login == true ? (
+              <ProfileDropdown />
+            ) : (
+              <a
+                href="/login"
+                className="text-sm font-semibold leading-6 text-gray-900"
+              >
+                Sign in <span aria-hidden="true">&rarr;</span>
+              </a>
+            )}
           </div>
         </div>
       </nav>
