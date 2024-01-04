@@ -1,9 +1,5 @@
-import { Menu, Transition } from "@headlessui/react";
-import { Fragment } from "react";
-import SignOut from "./signOut";
-function classNames(...classes: string[]) {
-  return classes.filter(Boolean).join(" ");
-}
+import Signout from "./signOut";
+
 export default function ProfileDropdown() {
   return (
     <div
@@ -60,7 +56,7 @@ export default function ProfileDropdown() {
         >
           Settings
         </a>
-        <SignOut />
+        <Signout />
       </div>
     </div>
   );

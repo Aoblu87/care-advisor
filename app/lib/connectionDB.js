@@ -11,8 +11,6 @@ const connectionDB = async () => {
   try {
     await mongoose.connect(process.env.MONGODB_URL, {
       dbName: "MY_DB",
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
     });
     isConnected = true;
     console.log("Server connected");
