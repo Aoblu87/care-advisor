@@ -1,5 +1,4 @@
 "use client";
-import { usePathname } from "next/navigation";
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(" ");
 }
@@ -15,7 +14,6 @@ const navigation = [
 ];
 
 export default function NavLinks() {
-  const pathname = usePathname();
   return (
     <>
       <div className="flex md:space-x-4 flex-col md:flex-row">
