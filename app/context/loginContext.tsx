@@ -20,8 +20,13 @@ export const LoginProvider = ({ children }: LoginProviderProps) => {
 
   useEffect(() => {
     try {
-      fetch("/api/users/me");
-      setLogin(true);
+      fetch("/api/users/me").then((response) => {
+        if (!response.ok) {
+          throw new Error();
+        }
+
+        setLogin(true);
+      });
     } catch (error) {
       console.error(error);
     }
