@@ -1,13 +1,11 @@
 import connectionDB from "@/app/lib/connectionDB.js";
-import type { NextApiRequest, NextApiResponse } from "next";
+import type { NextApiResponse } from "next";
+import { NextRequest } from "next/server";
 
 type ResponseData = {
   message: string;
 };
 connectionDB();
-export function GET(
-  req: NextApiRequest,
-  response: NextApiResponse<ResponseData>
-) {
+export function GET(req: NextRequest, response: NextApiResponse<ResponseData>) {
   response.json({ message: "Hello from Next.js!" });
 }
