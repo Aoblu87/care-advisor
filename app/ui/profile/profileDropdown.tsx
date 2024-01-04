@@ -1,4 +1,4 @@
-import Signout from "./signout";
+import Signout from "./signOut";
 
 export default function ProfileDropdown() {
   return (
