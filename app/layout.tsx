@@ -5,6 +5,7 @@ import { LoginProvider } from "./context/loginContext";
 import "./ui/globals.css";
 import Navbar from "./ui/home/navbar";
 import PrelineScript from "./ui/PrelineScript";
+import { useSession } from "next-auth/react";
 require("dotenv").config();
 
 export const metadata = {
@@ -17,6 +18,7 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const { data: session } = useSession();
   return (
     <html lang="en">
       <LoginProvider>
