@@ -1,7 +1,7 @@
 "use client";
 import { useContext } from "react";
 
-import { LoginContext } from "@/app/context/loginContext";
+import { LoginContext } from "@/context/loginContext";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 

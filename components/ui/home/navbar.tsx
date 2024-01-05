@@ -2,7 +2,7 @@
 import { ThemeSwitch } from "./ThemeSwitch";
 import NavLinks from "./nav-links";
 import ProfileDropdown from "../profile/profileDropdown";
-import { LoginContext } from "@/app/context/loginContext";
+import { LoginContext } from "@/context/loginContext";
 import { useContext } from "react";
 
 export default function Navbar() {

@@ -1,6 +1,6 @@
 import bcryptjs from "bcryptjs";
-import connectionDB from "../../lib/connectionDB";
-import User from "../../models/User.js";
+import connectionDB from "@/lib/connectionDB";
+import User from "@/models/User.js";
 import { NextRequest, NextResponse } from "next/server";
 
 // Calls the connect function to establish a connection to the database.

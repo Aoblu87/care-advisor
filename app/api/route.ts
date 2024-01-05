@@ -1,4 +1,4 @@
-import connectionDB from "@/app/lib/connectionDB.js";
+import connectionDB from "@/lib/connectionDB.js";
 import { NextResponse } from "next/server";
 
 connectionDB();

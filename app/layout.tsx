@@ -1,10 +1,10 @@
-import { inter } from "@/app/ui/fonts";
+import { inter } from "@/app/fonts";
 
-import { ThemeProvider } from "./context/themeContext";
-import { LoginProvider } from "./context/loginContext";
-import "./ui/globals.css";
-import Navbar from "./ui/home/navbar";
-import PrelineScript from "./ui/PrelineScript";
+import PrelineScript from "@/app/PrelineScript";
+import Navbar from "@/components/ui/home/navbar";
+import { LoginProvider } from "@/context/loginContext";
+import { ThemeProvider } from "@/context/themeContext";
+import "@/app/globals.css";
 require("dotenv").config();
 
 export const metadata = {
