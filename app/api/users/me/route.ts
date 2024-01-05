@@ -1,6 +1,6 @@
 import { getDataFromToken } from "@/app/helper/getDataFromToken";
-import connectionDB from "@/app/lib/connectionDB";
-import User from "@/app/models/User";
+import connectionDB from "@/lib/connectionDB";
+import User from "@/models/User";
 import { NextRequest, NextResponse } from "next/server";
 
 connectionDB();
