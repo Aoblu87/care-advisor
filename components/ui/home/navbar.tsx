@@ -1,7 +1,7 @@
 "use client";
 import { ThemeSwitch } from "./ThemeSwitch";
 import NavLinks from "./nav-links";
-import ProfileDropdown from "../profile/profileDropdown";
+import ProfileDropdown from "@/components/profile/profileDropdown";
 import { LoginContext } from "@/context/loginContext";
 import { useContext } from "react";
 
@@ -79,7 +79,7 @@ export default function Navbar() {
               <ProfileDropdown />
             ) : (
               <a
-                href="/login"
+                href="/auth/login"
                 className="text-sm font-semibold leading-6 text-gray-900"
               >
                 Sign in <span aria-hidden="true">&rarr;</span>
