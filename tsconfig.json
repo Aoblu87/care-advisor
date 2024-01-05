@@ -42,10 +42,10 @@
     "app/api/session/route.js",
     "app/api/route.js",
     "app/models/User.js",
-    "app/api/auth/callback/route.js",
-    "app/api/auth/route.js",
-    "app/api/auth/route.js",
-    "app/api/auth/route.js"
+    "app/api/(auth)/callback/route.js",
+    "app/api/(auth)/route.js",
+    "app/api/(auth)/route.js",
+    "app/api/(auth)/route.js"
   ],
   "exclude": ["node_modules"]
 }

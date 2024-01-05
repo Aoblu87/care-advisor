@@ -1,4 +1,4 @@
-import User from "@/app/models/User";
+import User from "@/models/User";
 import passport from "passport";
 import { Strategy as GoogleStrategy } from "passport-google-oauth20";
 
