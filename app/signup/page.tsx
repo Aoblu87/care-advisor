@@ -1,4 +1,4 @@
-import SignUp from "@/components/ui/home/signup"
+import SignUp from "@/components/home/signup"
 
 export default function Page() {
   return <SignUp />;

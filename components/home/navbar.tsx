@@ -1,9 +1,12 @@
 "use client";
+import { LoginButton } from "@/components/auth/login-button";
 import { ThemeSwitch } from "./ThemeSwitch";
 import NavLinks from "./nav-links";
-import ProfileDropdown from "../profile/profileDropdown";
+import ProfileDropdown from "@/components/profile/profileDropdown";
 import { LoginContext } from "@/context/loginContext";
+import Link from "next/link";
 import { useContext } from "react";
+import { Button } from "../ui/button";
 
 export default function Navbar() {
   const { login } = useContext(LoginContext);
@@ -78,12 +81,14 @@ export default function Navbar() {
             {login ? (
               <ProfileDropdown />
             ) : (
-              <a
-                href="/login"
-                className="text-sm font-semibold leading-6 text-gray-900"
-              >
+              <LoginButton asChild >
+              <Button variant="ghost" className="text-sm font-semibold leading-6 text-gray-900">
+
+
+
                 Sign in <span aria-hidden="true">&rarr;</span>
-              </a>
+              </Button>
+              </LoginButton>
             )}
           </div>
         </div>
