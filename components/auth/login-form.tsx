@@ -4,21 +4,27 @@ import { useContext } from "react";
 import { LoginContext } from "@/context/loginContext";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { FormError } from "../form-error";
+import { FormSuccess } from "../form-success";
 
 export default function LoginForm(props: any) {
-  const { setLoading } = props;
+  const[error, setError ]= useState<string|undefined>("");
+  const[success, setSuccess ]= useState<string|undefined>("");
+
+  const {loading, setLoading } = props;
   const [emailExists, setEmailExists] = useState(true);
   const [user, setUser] = useState({
     email: "",
     password: "",
   });
   const router = useRouter();
-  const navigate = () => router.push("/");
   const { setLogin } = useContext(LoginContext);
 
   const handleLogin = async (e: any) => {
     e.preventDefault();
     setLoading(true);
+    setError("")
+    setSuccess("")
 
     try {
       const response = await fetch(`/api/users/login`, {
@@ -34,19 +40,24 @@ export default function LoginForm(props: any) {
 
       if (!response.ok) {
         setEmailExists(false);
+        setLogin(false);
         throw new Error(`HTTP error! Status: ${response.status}`);
       }
       const data = await response.json();
+      if(data.success){
+        setLogin(true);
+router.push("/");
+      }
+      setError(data.error)
+      setSuccess(data.success)
       if (data.token) {
         localStorage.setItem(
           "userId",
           data.userId ? data.userId : data.payload.id
-        );
-        localStorage.setItem("token", data.token);
-      }
+          );
+          localStorage.setItem("token", data.token);
+        }
       console.log(data);
-      setLogin(true);
-      navigate();
     } catch (error) {
       console.log("Error fetching data:", error);
     } finally {
@@ -65,6 +76,7 @@ export default function LoginForm(props: any) {
             <input
               type="email"
               id="email"
+              disabled={loading}
               name="email"
               className="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600"
               required
@@ -109,6 +121,7 @@ export default function LoginForm(props: any) {
             <input
               type="password"
               id="password"
+              disabled={loading}
               name="password"
               className="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600"
               required
@@ -138,12 +151,14 @@ export default function LoginForm(props: any) {
             8+ characters required
           </p>
         </div>
-
+        {/* {success&& <FormError message="Invalid credentials" />} */}
+     
         <div className="flex items-center">
           <div className="flex">
             <input
               id="remember-me"
               name="remember-me"
+         disabled={loading}
               type="checkbox"
               className="shrink-0 mt-0.5 border-gray-200 rounded text-blue-600 pointer-events-none focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:checked:bg-blue-500 dark:checked:border-blue-500 dark:focus:ring-offset-gray-800"
             />

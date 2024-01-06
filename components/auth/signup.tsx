@@ -1,6 +1,65 @@
+"use client"
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useContext, useState } from "react";
+import { LoginContext } from "@/context/loginContext";
+
 
 export default function SignUp() {
+  const [loading, setLoading] = useState(false)
+  const [successfullRegistration, setSuccessfullRegistration] =
+        useState(false)
+  const { setLogin } = useContext(LoginContext);
+
+  
+  const [emailExists, setEmailExists] = useState(true);
+  const [user, setUser] = useState({
+    email: "",
+    password: "",
+    firstName: "",
+    lastName: "",
+  });
+  const router = useRouter();
+  const handleRegistrer = async (e: any) => {
+    e.preventDefault();
+    setLoading(true);
+    setEmailExists(false)
+    // setSuccess("")
+    // setError("")
+    //salvo la data in cui avviene la registrazione
+    let date = new Date().toLocaleDateString()
+    console.log(date)
+    try {
+      const response = await fetch(`/api/users/register`, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+        method: "POST",
+        body: JSON.stringify({
+          email: user.email,
+          password: user.password,
+          firstName: user.firstName,
+          lastName: user.lastName,
+          createdAt: date,
+        }),
+      });
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`)
+    } else {
+        setSuccessfullRegistration(true)
+    setLogin(true)
+
+    }
+    const data = await response.json()
+    setEmailExists(true)
+    router.push("/")
+       } catch (error) {
+      console.log("Error fetching data:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+  
   return (
     <>
       <div>
@@ -15,7 +74,7 @@ export default function SignUp() {
                   Already have an account?
                   <Link
                     className="text-blue-600 decoration-2 hover:underline font-medium dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
-                    href="/login"
+                    href="/auth/login"
                   >
                     Sign in here
                   </Link>
@@ -59,8 +118,36 @@ export default function SignUp() {
                 </div>
 
                 {/* <!-- Form --> */}
-                <form>
+                <form onSubmit={handleRegistrer}>
                   <div className="grid gap-y-4">
+                  <div className="flex gap-4 mb-2">
+                            <div className=" relative ">
+                                <input
+                                    type="text"
+                                    id="create-account-first-name"
+                                    className=" rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
+                                    name="First name"
+                                    placeholder="First name"
+                                    required
+                                    value={user.firstName}
+
+                                    onChange={(e) => setUser({ ...user, firstName: e.target.value })}
+                                />
+                            </div>
+                            <div className=" relative ">
+                                <input
+                                    type="text"
+                                    id="create-account-last-name"
+                                    className=" rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
+                                    name="Last name"
+                                    placeholder="Last name"
+                                    required
+                                    value={user.lastName}
+
+                                    onChange={(e) => setUser({ ...user, lastName: e.target.value })}
+                                />
+                            </div>
+                        </div>
                     {/* <!-- Form Group --> */}
                     <div>
                       <label
@@ -73,10 +160,16 @@ export default function SignUp() {
                         <input
                           type="email"
                           id="email"
+                          disabled={loading}
+
                           name="email"
                           className="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600"
                           required
                           aria-describedby="email-error"
+                          value={user.email}
+
+                          onChange={(e) => setUser({ ...user, email: e.target.value })}
+            
                         />
                         <div className="absolute inset-y-0 end-0 flex items-center pointer-events-none pe-3">
                           <svg
@@ -113,10 +206,16 @@ export default function SignUp() {
                         <input
                           type="password"
                           id="password"
+                          disabled={loading}
+
                           name="password"
                           className="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600"
                           required
                           aria-describedby="password-error"
+                          value={user.password}
+
+                          onChange={(e) => setUser({ ...user, password: e.target.value })}
+            
                         />
                         <div className=" absolute inset-y-0 end-0 flex items-center pointer-events-none pe-3">
                           <svg
@@ -141,7 +240,7 @@ export default function SignUp() {
                     {/* <!-- End Form Group --> */}
 
                     {/* <!-- Form Group --> */}
-                    <div>
+                    {/* <div>
                       <label
                         htmlFor="confirm-password"
                         className="block text-sm mb-2 dark:text-white"
@@ -176,7 +275,7 @@ export default function SignUp() {
                       >
                         Password does not match the password
                       </p>
-                    </div>
+                    </div> */}
                     {/* <!-- End Form Group --> */}
 
                     {/* <!-- Checkbox --> */}
