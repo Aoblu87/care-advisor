@@ -11,7 +11,7 @@ export default function SignOut() {
   const logout = async () => {
     try {
       await fetch("/api/users/logout");
-      router.push("/login");
+      router.push("/auth/login");
       setLogin(false);
     } catch (error: any) {
       console.log(error.message);

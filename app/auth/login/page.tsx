@@ -1,10 +1,5 @@
-import Login from "@/components/auth/login/login";
+import Login from "@/components/auth/login"
 
-export default function LoginPage() {
-  return (
-    <>
-      <Login />
-    </>
-  );
+export default function LoginPage(){
+  return <Login/>
 }
-

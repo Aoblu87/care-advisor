@@ -17,7 +17,8 @@ export const LoginButton=({
 }: LoginButtonProps)=>{
     const router = useRouter()
     const onClick= () => {
-router.push("/api/login")    }
+router.push("/auth/login")   
+ }
     if (mode=="modal"){
         return(<span>To do :implemenrt modal</span>)
     }
