@@ -25,7 +25,7 @@ export const authOptions: NextAuthOptions = {
     adapter: MongoDBAdapter(clientPromise) as Adapter,
     secret: process.env.NEXTAUTH_SECRET as string,
     pages: {
-        signIn: "/login"
+        signIn: "auth/login"
     },
 
     session: {
@@ -89,21 +89,30 @@ export const authOptions: NextAuthOptions = {
 
             credentials: {
                 email: {},
-                password: {}
+                password: {},
+               
             },
-            async authorize(credentials, req) {
+            async authorize(credentials ) {
                 const formEmail = credentials?.email as string
                 const formPassword = credentials?.password as string
+               
 
 
                 await dbConnect();
-                const isUserExist = await User.findOne({
+                let isUserExist = await User.findOne({
                     email: formEmail
                 })
-
                 if (!isUserExist) {
                     return null;
                 }
+                // if (!isUserExist) {
+                //     isUserExist = await User.create({
+                //         googleId: profile.id,
+                //         firstName: profile.name.givenName,
+                //         lastName: profile.name.familyName,
+                //         email: profile.emails[0].value,
+                //     })                }
+                    // cb(null, isUserExist)
 
                 const isValidPassword = await bcryptjs.compare(formPassword, isUserExist?.password)
 
@@ -123,23 +132,33 @@ export const authOptions: NextAuthOptions = {
 
     callbacks: {
 
-        async signIn({ user }) {
+        async signIn({ account, profile, user, credentials }) {
+            try {
+                await dbConnect();
+      
+              // check if user already exists
+              const userExists = await User.findOne({ email: profile?.email })
+      
+              // if not, create a new document and save user in MongoDB
+              if (!userExists) {
+                await User.create({
+                    googleId: profile?.sub,
+            firstName: profile?.name?.replace(/\s/g, "").toLowerCase(),
+            lastName: profile?.name?.replace(/\s/g, "").toLowerCase(),
+            email: profile?.email,
 
-            const isActiveUser = await User.findOne({
-                email: user?.email
-            })
-            console.log('isActiveUser', isActiveUser)
-            if(isActiveUser?.active) {
-                console.log('Good User')
-                return true;
-            } else {
-                console.log('Bad User')
-                return false;
+                })
+              }
+      
+              return true
+            } catch (error:any) {
+              console.log('Error checking if user exists: ', error.message)
+              return false
             }
+          },
         
-          //  console.log('Activity Status check', isActiveUser);
             
-        },
+        
 
 
 

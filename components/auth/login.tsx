@@ -1,20 +1,22 @@
 "use client";
+import { signIn } from "next-auth/react";
 import Link from "next/link";
+import { useContext, useState } from "react";
 import LoginForm from "./login-form";
-import { useState } from "react";
-import { useRouter } from "next/navigation";
-import {signIn} from "next-auth/react"
+import { LoginContext } from "@/context/loginContext";
 
 export default function Login() {
   const [loading, setLoading] = useState(false);
-  const router = useRouter();
+  const { setLogin } = useContext(LoginContext);
+
 
   const handleOAuthSignIn = () => {
-    // Your custom logic here
+ try {
   
-    // https://next-auth.js.org/getting-started/client#specifying-a-callbackurl
-    // Then call signIn with custom options
-    signIn('google', { callbackUrl: 'http://localhost:3000/' })
+   signIn('google', { callbackUrl: 'http://localhost:3000/' })
+ } catch (error) {
+  console.log("Error login:", error);
+ }
   };
   return (
     <>

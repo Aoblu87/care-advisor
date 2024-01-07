@@ -1,12 +1,11 @@
 "use client";
 import { LoginButton } from "@/components/auth/login-button";
-import { ThemeSwitch } from "./ThemeSwitch";
-import NavLinks from "./nav-links";
 import ProfileDropdown from "@/components/profile/profileDropdown";
 import { LoginContext } from "@/context/loginContext";
-import Link from "next/link";
 import { useContext } from "react";
 import { Button } from "../ui/button";
+import { ThemeSwitch } from "./ThemeSwitch";
+import NavLinks from "./nav-links";
 
 export default function Navbar() {
   const { login } = useContext(LoginContext);
