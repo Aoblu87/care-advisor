@@ -3,6 +3,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useContext, useState } from "react";
 import { LoginContext } from "@/context/loginContext";
+import { signIn } from "next-auth/react";
 
 
 export default function SignUp() {
@@ -20,6 +21,13 @@ export default function SignUp() {
     lastName: "",
   });
   const router = useRouter();
+  const handleOAuthSignupIn = () => {
+    // Your custom logic here
+  
+    // https://next-auth.js.org/getting-started/client#specifying-a-callbackurl
+    // Then call signIn with custom options
+    signIn('google', { callbackUrl: 'http://localhost:3000/' })
+  };
   const handleRegistrer = async (e: any) => {
     e.preventDefault();
     setLoading(true);
@@ -82,10 +90,13 @@ export default function SignUp() {
               </div>
 
               <div className="mt-5">
-                <a
+                <button
+                type="button"
                   className="w-full py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-white dark:hover:bg-gray-800 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
-                  href="#"
+                onClick={handleOAuthSignupIn}
                 >
+
+
                   <svg
                     className="w-4 h-auto"
                     width="46"
@@ -111,7 +122,7 @@ export default function SignUp() {
                     />
                   </svg>
                   Sign up with Google
-                </a>
+                </button>
 
                 <div className="py-3 flex items-center text-xs text-gray-400 uppercase before:flex-[1_1_0%] before:border-t before:border-gray-200 before:me-6 after:flex-[1_1_0%] after:border-t after:border-gray-200 after:ms-6 dark:text-gray-500 dark:before:border-gray-600 dark:after:border-gray-600">
                   Or

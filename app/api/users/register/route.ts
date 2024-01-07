@@ -1,5 +1,5 @@
 import bcryptjs from "bcryptjs";
-import connectionDB from "@/lib/clientPromise";
+import connectionDB from "@/lib/connectionDB";
 import User from "@/models/User.js";
 import { NextRequest, NextResponse } from "next/server";
 
