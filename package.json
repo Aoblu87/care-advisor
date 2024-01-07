@@ -25,6 +25,7 @@
     "next": "14.0.4",
     "next-auth": "^4.24.5",
     "next-connect": "^1.0.0-next.4",
+    "openai": "^4.24.1",
     "passport": "^0.7.0",
     "passport-google-oauth20": "^2.0.0",
     "preline": "^2.0.3",
