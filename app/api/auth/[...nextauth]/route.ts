@@ -20,7 +20,7 @@ interface ICustomDataOfUser extends IUser {
     provider: string;
 }
 
-export const authOptions: NextAuthOptions = {
+export default NextAuth( {
 
     adapter: MongoDBAdapter(clientPromise) as Adapter,
     secret: process.env.NEXTAUTH_SECRET as string,
@@ -209,8 +209,8 @@ export const authOptions: NextAuthOptions = {
         }
     }
 
-}
+})
 
-const handler = NextAuth(authOptions)
-export { handler as GET, handler as POST }
+// const handler = NextAuth(authOptions)
+// export { handler as GET, handler as POST }
 
