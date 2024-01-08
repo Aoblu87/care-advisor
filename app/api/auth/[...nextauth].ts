@@ -1,15 +1,15 @@
-import bcryptjs from 'bcryptjs';
+import dbConnect from "@/dbConfig/dbConfig";
 import clientPromise from "@/lib/mongoDBAuthProvider";
-import { MongoDBAdapter } from "@auth/mongodb-adapter"
-import { NextAuthOptions, User as IUser } from "next-auth";
+import User from "@/models/User";
+import { MongoDBAdapter } from "@auth/mongodb-adapter";
+import bcryptjs from 'bcryptjs';
+import { User as IUser } from "next-auth";
+import type { Adapter } from "next-auth/adapters";
 import NextAuth from "next-auth/next";
+import CredentialsProvider from "next-auth/providers/credentials";
+import EmailProvider from "next-auth/providers/email";
 import GitHubProvider from "next-auth/providers/github";
 import GoogleProvider from "next-auth/providers/google";
-import EmailProvider from "next-auth/providers/email";
-import CredentialsProvider from "next-auth/providers/credentials";
-import dbConnect from "@/dbConfig/dbConfig";
-import User from "@/models/User";
-import type { Adapter } from "next-auth/adapters";
 
 
 
@@ -105,14 +105,7 @@ export default NextAuth( {
                 if (!isUserExist) {
                     return null;
                 }
-                // if (!isUserExist) {
-                //     isUserExist = await User.create({
-                //         googleId: profile.id,
-                //         firstName: profile.name.givenName,
-                //         lastName: profile.name.familyName,
-                //         email: profile.emails[0].value,
-                //     })                }
-                    // cb(null, isUserExist)
+          
 
                 const isValidPassword = await bcryptjs.compare(formPassword, isUserExist?.password)
 
