@@ -13,26 +13,20 @@ import GoogleProvider from "next-auth/providers/google";
 
 
 
-interface ICustomDataOfUser extends IUser {
-    roles: number[]; // Guest: 2001, Super Admin: 1010, Admin: 1100 Author: 2010
-    active: boolean;
-    is_admin: boolean;
-    provider: string;
-}
 
 export default NextAuth( {
 
     adapter: MongoDBAdapter(clientPromise) as Adapter,
     secret: process.env.NEXTAUTH_SECRET as string,
-    pages: {
-        signIn: "auth/login"
-    },
+    // pages: {
+    //     signIn: "api/auth/"
+    // },
 
-    session: {
-        strategy: 'jwt',
-        maxAge: 10 * 24 * 60 * 60,
-        updateAge: 2 * 24 * 60 * 60
-    },
+    // session: {
+    //     strategy: 'jwt',
+    //     maxAge: 10 * 24 * 60 * 60,
+    //     updateAge: 2 * 24 * 60 * 60
+    // },
     //  debug: process.env.NODE_ENV === "development",
 
     providers: [
@@ -83,44 +77,44 @@ export default NextAuth( {
             },
             from: process.env.EMAIL_SERVER_FROM,
         }),
-        CredentialsProvider({
+        // CredentialsProvider({
 
-            name: "Credentials",
+        //     name: "Credentials",
 
-            credentials: {
-                email: {},
-                password: {},
+        //     credentials: {
+        //         email: {},
+        //         password: {},
                
-            },
-            async authorize(credentials ) {
-                const formEmail = credentials?.email as string
-                const formPassword = credentials?.password as string
+        //     },
+        //     async authorize(credentials ) {
+        //         const formEmail = credentials?.email as string
+        //         const formPassword = credentials?.password as string
                
 
 
-                await dbConnect();
-                let isUserExist = await User.findOne({
-                    email: formEmail
-                })
-                if (!isUserExist) {
-                    return null;
-                }
+        //         await dbConnect();
+        //         let isUserExist = await User.findOne({
+        //             email: formEmail
+        //         })
+        //         if (!isUserExist) {
+        //             return null;
+        //         }
           
 
-                const isValidPassword = await bcryptjs.compare(formPassword, isUserExist?.password)
+        //         const isValidPassword = await bcryptjs.compare(formPassword, isUserExist?.password)
 
-                if (!isValidPassword) {
-                    return null;
-                }
+        //         if (!isValidPassword) {
+        //             return null;
+        //         }
 
-                return {
-                    id: isUserExist?._id,
-                    name: isUserExist?.name || "anonymous",
-                    email: isUserExist?.email
-                };
+        //         return {
+        //             id: isUserExist?._id,
+        //             name: isUserExist?.name || "anonymous",
+        //             email: isUserExist?.email
+        //         };
 
-            }
-        })
+        //     }
+        // })
     ],
 
     callbacks: {
@@ -155,51 +149,51 @@ export default NextAuth( {
 
 
 
-        async jwt({ token, user, account }) {
-            if (account) {
-                token.accessToken = account?.access_token
-            }
-            let customData;
-            if (user) {
+        // async jwt({ token, user, account }) {
+        //     if (account) {
+        //         token.accessToken = account?.access_token
+        //     }
+        //     let customData;
+        //     if (user) {
 
 
-                token.id = user?.id
-                const userNewData = user as ICustomDataOfUser;
+        //         token.id = user?.id
+        //         const userNewData = user as ICustomDataOfUser;
 
-                if (!userNewData?.provider) {
-                    const existUser = await User.findOne({
-                        email: user?.email
-                    })
-                    customData = {
-                        id: existUser?.id,
-                        name: existUser?.name,
-                        email: existUser?.email,
-                        image: existUser?.image,
-                        roles: existUser?.roles,
-                        active: existUser?.active,
-                        is_admin: existUser?.is_admin,
-                    }
+        //         if (!userNewData?.provider) {
+        //             const existUser = await User.findOne({
+        //                 email: user?.email
+        //             })
+        //             customData = {
+        //                 id: existUser?.id,
+        //                 name: existUser?.name,
+        //                 email: existUser?.email,
+        //                 image: existUser?.image,
+        //                 roles: existUser?.roles,
+        //                 active: existUser?.active,
+        //                 is_admin: existUser?.is_admin,
+        //             }
 
-                }
-                else {
-                    customData = {
-                        id: userNewData?.id,
-                        name: userNewData?.name,
-                        email: userNewData?.email,
-                        image: userNewData?.image,
-                        roles: userNewData?.roles,
-                        active: userNewData?.active,
-                        is_admin: userNewData?.is_admin,
-                    }
-                }
+        //         }
+        //         else {
+        //             customData = {
+        //                 id: userNewData?.id,
+        //                 name: userNewData?.name,
+        //                 email: userNewData?.email,
+        //                 image: userNewData?.image,
+        //                 roles: userNewData?.roles,
+        //                 active: userNewData?.active,
+        //                 is_admin: userNewData?.is_admin,
+        //             }
+        //         }
 
-            }
-            return ({ ...token, ...customData })
-        },
-        async session({ session, token }) {
-            session.user = token as any;
-            return session;
-        }
+        //     }
+        //     return ({ ...token, ...customData })
+        // },
+        // async session({ session, token }) {
+        //     session.user = token as any;
+        //     return session;
+        // }
     }
 
 })
