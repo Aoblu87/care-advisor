@@ -6,7 +6,6 @@ import { LoginProvider } from "@/context/loginContext";
 import { ThemeProvider } from "@/context/themeContext";
 import "@/app/globals.css";
 import { getServerSession } from "next-auth";
-import { authOptions } from "./api/auth/[...nextauth]/route";
 import SessionProvider from "@/context/authContext";
 require("dotenv").config();
 
@@ -20,7 +19,7 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const session = await getServerSession(authOptions);
+  const session = await getServerSession();
 
   return (
     <html lang="en">
