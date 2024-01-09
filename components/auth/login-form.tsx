@@ -27,7 +27,7 @@ export default function LoginForm(props: any) {
     setSuccess("")
 
     try {
-      const response = await fetch(`/api/users/login`, {
+      const response = await fetch(`/api/auth/login`, {
         headers: {
           "Content-Type": "application/json",
         },

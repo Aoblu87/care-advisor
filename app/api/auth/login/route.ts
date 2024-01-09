@@ -5,9 +5,12 @@ import { NextResponse } from "next/server";
 import { NextRequest } from "next/server.js";
 import User from "@/models/User.js";
 
+
 export async function POST(request: NextRequest) {
+  //Connect to server
   await connectionDB();
   try {
+    //Looking for the body of the request
     const reqBody = await request.json();
     // Parses the request body to extract email and password
     const { email, password } = reqBody;
