@@ -1,5 +1,5 @@
-import Login from "@/components/auth/login";
+import Profile from "@/components/profile/profile";
 
 export default function Page() {
-  return <p>Profile</p>;
+  return <Profile/>
 }

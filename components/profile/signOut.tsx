@@ -8,11 +8,16 @@ export default function SignOut() {
   const router = useRouter();
   const { setLogin } = useContext(LoginContext);
 
+  // Function to log out the user
   const logout = async () => {
     try {
       await fetch("/api/users/logout");
-      router.push("/auth/login");
+      //Redirect to the home page
+      router.push("/");
+      //Setting the login state false 
       setLogin(false);
+      //Clearing the local storage
+      localStorage.clear();
     } catch (error: any) {
       console.log(error.message);
     }

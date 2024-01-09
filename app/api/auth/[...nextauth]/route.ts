@@ -21,13 +21,14 @@ interface ICustomDataOfUser extends IUser {
 }
 
 export const authOptions: NextAuthOptions = {
-
+//Define the providers you want to use
     adapter: MongoDBAdapter(clientPromise) as Adapter,
     secret: process.env.NEXTAUTH_SECRET as string,
+    //Define the pages you want to use
     pages: {
-        signIn: "auth/login"
+        signIn: "/login"
     },
-
+//define the strategy of the authentication on session and its duration
     session: {
         strategy: 'jwt',
         maxAge: 10 * 24 * 60 * 60,
@@ -35,6 +36,7 @@ export const authOptions: NextAuthOptions = {
     },
     //  debug: process.env.NODE_ENV === "development",
 
+//Define providers you want to use for authentication
     providers: [
         GitHubProvider({
             clientId: process.env.GITHUB_CLIENT_ID as string,
@@ -57,6 +59,7 @@ export const authOptions: NextAuthOptions = {
         GoogleProvider({
             clientId: process.env.GOOGLE_CLIENT_ID as string,
             clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
+            //Define the object that will be passed to the OAuth provider
             profile(profile) {
                 return {
                     id: profile.sub,
@@ -105,14 +108,7 @@ export const authOptions: NextAuthOptions = {
                 if (!isUserExist) {
                     return null;
                 }
-                // if (!isUserExist) {
-                //     isUserExist = await User.create({
-                //         googleId: profile.id,
-                //         firstName: profile.name.givenName,
-                //         lastName: profile.name.familyName,
-                //         email: profile.emails[0].value,
-                //     })                }
-                    // cb(null, isUserExist)
+      
 
                 const isValidPassword = await bcryptjs.compare(formPassword, isUserExist?.password)
 
@@ -129,7 +125,7 @@ export const authOptions: NextAuthOptions = {
             }
         })
     ],
-
+//Define the callback to signin the user 
     callbacks: {
 
         async signIn({ account, profile, user, credentials }) {
@@ -159,7 +155,6 @@ export const authOptions: NextAuthOptions = {
         
             
         
-
 
 
         async jwt({ token, user, account }) {
@@ -203,6 +198,7 @@ export const authOptions: NextAuthOptions = {
             }
             return ({ ...token, ...customData })
         },
+        //USe session to keep track of the user
         async session({ session, token }) {
             session.user = token as any;
             return session;
